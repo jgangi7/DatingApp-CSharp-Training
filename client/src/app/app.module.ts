@@ -10,20 +10,21 @@ import {
 } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
 import { HttpClientModule } from '@angular/common/http';
-import { HomeComponent } from "./home/home.component";
+import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
-    declarations: [AppComponent],
-    providers: [provideAnimations()],
-    bootstrap: [AppComponent],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        FormsModule,
-        HttpClientModule,
-        NavComponent,
-        HomeComponent
-    ]
+  declarations: [AppComponent, HomeComponent],
+  providers: [provideAnimations()],
+  bootstrap: [AppComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule,
+    NavComponent,
+    RegisterComponent,
+  ],
 })
 export class AppModule {}
