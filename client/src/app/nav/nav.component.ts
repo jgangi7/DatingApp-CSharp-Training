@@ -18,7 +18,7 @@ export class NavComponent implements OnInit {
   login() {
     var userLoginString =
       '?UserName=' + this.model.username + '&Password=' + this.model.password;
-    this.accountService.login(this.model,userLoginString).subscribe(
+    this.accountService.login(this.model, userLoginString).subscribe(
       (response) => {
         console.log(response);
       },
@@ -26,5 +26,9 @@ export class NavComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  logout() {
+    this.accountService.logout()
   }
 }
