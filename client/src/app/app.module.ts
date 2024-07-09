@@ -9,7 +9,12 @@ import {
   provideAnimations,
 } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
-import { HttpClientModule, provideHttpClient } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClientModule,
+  provideHttpClient,
+  withInterceptors,
+} from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { provideRouter } from '@angular/router';
@@ -19,14 +24,15 @@ import { MemberDetailComponent } from './members/member-detail/member-detail.com
 import { MessagesComponent } from './messages/messages.component';
 import { ListsComponent } from './lists/lists.component';
 import { provideToastr } from 'ngx-toastr';
+import { ErrorInterceptor } from './_interceptors/error.interceptor';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
   providers: [
     provideAnimations(),
     provideRouter(routes),
-    provideHttpClient(),
     provideToastr({ positionClass: 'toast-bottom-right' }),
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
   imports: [
