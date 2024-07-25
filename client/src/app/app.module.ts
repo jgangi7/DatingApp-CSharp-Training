@@ -25,6 +25,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { ListsComponent } from './lists/lists.component';
 import { provideToastr } from 'ngx-toastr';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
+import { jwtInterceptor } from './_interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -33,6 +34,7 @@ import { ErrorInterceptor } from './_interceptors/error.interceptor';
     provideRouter(routes),
     provideToastr({ positionClass: 'toast-bottom-right' }),
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    provideHttpClient(withInterceptors([jwtInterceptor])),
   ],
   bootstrap: [AppComponent],
   imports: [
@@ -46,7 +48,7 @@ import { ErrorInterceptor } from './_interceptors/error.interceptor';
     MemberListComponent,
     MemberDetailComponent,
     MessagesComponent,
-    ListsComponent,
+    ListsComponent
   ],
 })
 export class AppModule {}

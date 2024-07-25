@@ -1,1 +1,81 @@
-<p>member-detail works!</p>
+@if(member) {
+<div class="row">
+  <div class="col-4">
+    <div class="card">
+      <img
+        class="card-img img-thumbnail"
+        src="{{ member.photoUrl || './assets/user.png' }}"
+        alt="{{ member.knownAs }}"
+      />
+      <div class="card-body">
+        <div>
+          <strong>Location:</strong>
+          <p>{{ member.city }}, {{ member.country }}</p>
+        </div>
+        <div>
+          <strong>Age:</strong>
+          <p>{{ member.age }}</p>
+        </div>
+        <div>
+          <strong>Last Active:</strong>
+          <p>{{ member.lastActive }}</p>
+        </div>
+        <div>
+          <strong>Member since:</strong>
+          <p>{{ member.created }}</p>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="btn-group d-flex">
+          <button class="btn btn-primary">Like</button>
+          <button class="btn btn-success">Messages</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab col-8">
+    <div class="d-flex flex-row">
+      <button class="tablinks" (click)="openTab('Intro')">Introduction</button>
+      <button class="tablinks" (click)="openTab('Interests')">Interests</button>
+      <button class="tablinks" (click)="openTab('Photos')">Photos</button>
+      <button class="tablinks" (click)="openTab('Messages')">Messages</button>
+    </div>
+    <!-- Tab content -->
+    <div>
+      @if(aboutTabVisable){
+      <div id="Intro" class="tabcontent" data-tab-info>
+        <h1>About {{ member.knownAs }}</h1>
+        <h4>Description</h4>
+        <p>{{ member.introduction }}</p>
+        <h4>Looking for</h4>
+        <p>{{ member.lookingFor }}</p>
+      </div>
+      } @if(interestTabVisable){
+
+      <div id="Interests" class="tabcontent" data-tab-info>
+        <h1>Interests</h1>
+        <p>{{ member.interests }}</p>
+      </div>
+      } @if(photosTabVisable){
+
+      <div id="Photos" class="tabcontent" data-tab-info>
+        <h1>Photos</h1>
+        <div class="photo-wrapper">
+          @for(photo of images; track photo){
+          <div>
+            <img src="{{ photo.url }}" alt="{{ photo.id }}" />
+          </div>
+          }
+        </div>
+      </div>
+      } @if(messagesTabVisable){
+
+      <div id="Messages" class="tabcontent" data-tab-info>
+        <h1>Messages</h1>
+        <p>Messages will go here</p>
+      </div>
+      }
+    </div>
+  </div>
+</div>
+}
