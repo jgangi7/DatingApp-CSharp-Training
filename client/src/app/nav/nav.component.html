@@ -33,7 +33,8 @@
         Welcome {{ accountService.currentUser()?.username | titlecase }}
       </button>
       <div class="dropdown-content">
-        <a class="dropdown-item">Edit profile</a>
+        <a routerLink="/member/edit" class="dropdown-item">Edit profile</a>
+        <a class="dropdown-divider"></a>
         <a class="dropdown-item" (click)="logout()">Logout</a>
       </div>
     </div>
